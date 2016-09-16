@@ -59,6 +59,7 @@
         <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>${nd4j.backend}</artifactId>
+            <version>${nd4j.version}</version>
         </dependency>
 
         <!-- Core DL4J functionality -->
@@ -127,7 +128,16 @@
                     <executable>java</executable>
                 </configuration>
             </plugin>
-            <plugin>
+               <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>        
+    <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>${maven-shade-plugin.version}</version>
