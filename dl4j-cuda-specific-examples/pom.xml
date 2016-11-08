@@ -13,7 +13,7 @@
 
     <name>DeepLearning4j CUDA special examples</name>
     <properties>
-        <nd4j.backend>nd4j-cuda-7.5-platform</nd4j.backend>
+        <nd4j.backend>nd4j-cuda-8.0</nd4j.backend>
     </properties>
 
     <repositories>
@@ -44,19 +44,14 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.nd4j</groupId>
-                <artifactId>nd4j-native-platform</artifactId>
-                <version>${nd4j.version}</version>
-            </dependency>
              <dependency>
                 <groupId>org.nd4j</groupId>
-                <artifactId>nd4j-cuda-7.5-platform</artifactId>
+                <artifactId>nd4j-cuda-7.5</artifactId>
                 <version>${nd4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.nd4j</groupId>
-                <artifactId>nd4j-cuda-8.0-platform</artifactId>
+                <artifactId>nd4j-cuda-8.0</artifactId>
                 <version>${nd4j.version}</version>
             </dependency>
       </dependencies>
@@ -92,13 +87,6 @@
             <groupId>jfree</groupId>
             <artifactId>jfreechart</artifactId>
             <version>${jfreechart.version}</version>
-        </dependency>
-
-        <!-- Arbiter: used for hyperparameter optimization examples -->
-        <dependency>
-            <groupId>org.deeplearning4j</groupId>
-            <artifactId>arbiter-deeplearning4j</artifactId>
-            <version>${arbiter.version}</version>
         </dependency>
     </dependencies>
 

@@ -40,7 +40,7 @@ public class MultiGpuLenetMnistExample {
 
     public static void main(String[] args) throws Exception {
         // PLEASE NOTE: For CUDA FP16 precision support is available
-        DataTypeUtil.setDTypeForContext(DataBuffer.Type.HALF);
+        DataTypeUtil.setDTypeForContext(DataBuffer.Type.FLOAT);
 
         CudaEnvironment.getInstance().getConfiguration()
             // key option enabled
@@ -50,7 +50,9 @@ public class MultiGpuLenetMnistExample {
             .setMaximumDeviceCache(2L * 1024L * 1024L * 1024L)
 
             // cross-device access is used for faster model averaging over pcie
-            .allowCrossDeviceAccess(true);
+            .allowCrossDeviceAccess(false);
+
+
 
         int nChannels = 1;
         int outputNum = 10;
@@ -117,16 +119,18 @@ public class MultiGpuLenetMnistExample {
             .prefetchBuffer(24)
 
             // set number of workers equal or higher then number of available devices. x1-x2 are good values to start with
-            .workers(4)
+            .workers(2)
 
             // rare averaging improves performance, but might reduce model accuracy
-            .averagingFrequency(3)
+            .averagingFrequency(10)
 
             // if set to TRUE, on every averaging model score will be reported
             .reportScoreAfterAveraging(true)
 
             // optinal parameter, set to false ONLY if your system has support P2P memory access across PCIe (hint: AWS do not support P2P)
             .useLegacyAveraging(true)
+
+            .averageUpdaters(true)
 
             .build();
 
