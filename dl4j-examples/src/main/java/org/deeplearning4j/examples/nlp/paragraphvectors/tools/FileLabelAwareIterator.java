@@ -79,6 +79,21 @@ public class FileLabelAwareIterator implements LabelAwareIterator {
         return labelsSource;
     }
 
+    @Override
+    public void shutdown() {
+        //
+    }
+
+    @Override
+    public boolean hasNext() {
+        return hasNextDocument();
+    }
+
+    @Override
+    public LabelledDocument next() {
+        return nextDocument();
+    }
+
     public static class Builder {
         protected List<File> foldersToScan = new ArrayList<>();
 

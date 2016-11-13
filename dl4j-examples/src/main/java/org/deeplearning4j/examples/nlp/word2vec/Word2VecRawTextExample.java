@@ -66,7 +66,5 @@ public class Word2VecRawTextExample {
         Collection<String> lst = vec.wordsNearest("day", 10);
         System.out.println("10 Words closest to 'day': " + lst);
 
-        UiServer server = UiServer.getInstance();
-        System.out.println("Started on port " + server.getPort());
     }
 }
