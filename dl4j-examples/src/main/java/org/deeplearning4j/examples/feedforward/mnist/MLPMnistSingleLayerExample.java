@@ -15,6 +15,7 @@ import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
+import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,6 +55,7 @@ public class MLPMnistSingleLayerExample {
         DataSetIterator mnistTrain = new MnistDataSetIterator(batchSize, true, rngSeed);
         DataSetIterator mnistTest = new MnistDataSetIterator(batchSize, false, rngSeed);
 
+        log.info(Nd4j.getRandom().getClass().getSimpleName());
 
         log.info("Build model....");
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
