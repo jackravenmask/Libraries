@@ -1,6 +1,7 @@
 package org.deeplearning4j.examples.feedforward.mnist;
 
 
+import org.deeplearning4j.optimize.listeners.PerformanceListener;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.deeplearning4j.datasets.iterator.impl.MnistDataSetIterator;
 import org.deeplearning4j.eval.Evaluation;
@@ -70,7 +71,7 @@ public class MLPMnistSingleLayerExample {
                 .layer(0, new DenseLayer.Builder() //create the first, input layer with xavier initialization
                         .nIn(numRows * numColumns)
                         .nOut(1000)
-                        .activation("sigmoid")
+                        .activation("relu")
                         .weightInit(WeightInit.XAVIER)
                         .build())
                 .layer(1, new OutputLayer.Builder(LossFunction.NEGATIVELOGLIKELIHOOD) //create hidden layer
@@ -85,7 +86,7 @@ public class MLPMnistSingleLayerExample {
         MultiLayerNetwork model = new MultiLayerNetwork(conf);
         model.init();
         //print the score with every 1 iteration
-        model.setListeners(new ScoreIterationListener(1));
+        model.setListeners(new PerformanceListener(100));
 
         log.info("Train model....");
         for( int i=0; i<numEpochs; i++ ){
