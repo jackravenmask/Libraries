@@ -29,7 +29,7 @@ public class TSNEStandardExample {
         //STEP 1: Initialization
         int iterations = 100;
         //create an n-dimensional array of doubles
-        Nd4j.dtype = DataBuffer.Type.DOUBLE;
+        Nd4j.setDataType(DataBuffer.Type.DOUBLE);
         Nd4j.factory().setDType(DataBuffer.Type.DOUBLE);
         List<String> cacheList = new ArrayList<>(); //cacheList is a dynamic array of strings used to hold all words
 
