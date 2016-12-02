@@ -17,9 +17,12 @@ import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.PerformanceListener;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.api.ops.executioner.OpExecutioner;
 import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
+import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
+import org.nd4j.linalg.profiler.OpProfiler;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +37,9 @@ public class LenetMnistExample {
     private static final Logger log = LoggerFactory.getLogger(LenetMnistExample.class);
 
     public static void main(String[] args) throws Exception {
+
+        Nd4j.getExecutioner().setProfilingMode(OpExecutioner.ProfilingMode.ALL);
+
         int nChannels = 1; // Number of input channels
         int outputNum = 10; // The number of possible outcomes
         int batchSize = 64; // Test batch size
@@ -133,6 +139,8 @@ public class LenetMnistExample {
             log.info(eval.stats());
             mnistTest.reset();
         }
-        log.info("****************Example finished********************");
+        log.info("****************Profiling info********************");
+
+        OpProfiler.getInstance().printOutDashboard();
     }
 }
