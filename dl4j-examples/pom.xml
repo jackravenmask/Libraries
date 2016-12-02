@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.deeplearning4j</groupId>
         <artifactId>deeplearning4j-examples-parent</artifactId>
-        <version>0.5-SNAPSHOT</version>
+        <version>0.7-SNAPSHOT</version>
     </parent>
 
     <name>DeepLearning4j Examples</name>
@@ -43,17 +43,17 @@
         <dependencies>
             <dependency>
                 <groupId>org.nd4j</groupId>
-                <artifactId>nd4j-native</artifactId>
+                <artifactId>nd4j-native-platform</artifactId>
                 <version>${nd4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.nd4j</groupId>
-                <artifactId>nd4j-cuda-7.5</artifactId>
+                <artifactId>nd4j-cuda-7.5-platform</artifactId>
                 <version>${nd4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.nd4j</groupId>
-                <artifactId>nd4j-cuda-8.0</artifactId>
+                <artifactId>nd4j-cuda-8.0-platform</artifactId>
                 <version>${nd4j.version}</version>
             </dependency>
        </dependencies>
@@ -79,16 +79,11 @@
             <version>${dl4j.version}</version>
         </dependency>
 
+        <!-- deeplearning4j-ui is used for HistogramIterationListener + visualization: see http://deeplearning4j.org/visualization -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-ui_2.10</artifactId>
+            <version>${dl4j.version}</version>
         </dependency>
 
         <!-- Force guava versions for using UI/HistogramIterationListener -->
@@ -117,6 +112,12 @@
             <version>${jcommon.version}</version>
         </dependency>
 
+        <!-- Used for downloading data in some of the examples -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.5</version>
+        </dependency>
     </dependencies>
 
     <build>

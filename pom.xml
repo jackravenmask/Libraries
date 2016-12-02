@@ -3,22 +3,22 @@
 
     <groupId>org.deeplearning4j</groupId>
     <artifactId>deeplearning4j-examples-parent</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.7-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
     <name>DeepLearning4j Examples Parent</name>
     <description>Examples of training different data sets</description>
     <properties>
-        <nd4j.backend>nd4j-cuda-8.0</nd4j.backend>
+        <nd4j.backend>nd4j-native-platform</nd4j.backend>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <shadedClassifier>bin</shadedClassifier>
-        <java.version>1.7</java.version>
-        <nd4j.version>0.6.1-SNAPSHOT</nd4j.version>
-        <dl4j.version>0.6.1-SNAPSHOT</dl4j.version>
-        <datavec.version>0.6.1-SNAPSHOT</datavec.version>
+        <java.version>1.8</java.version>
+        <nd4j.version>0.7.1</nd4j.version>
+        <dl4j.version>0.7.1</dl4j.version>
+        <datavec.version>0.7.1</datavec.version>
+        <arbiter.version>0.7.1</arbiter.version>
         <guava.version>19.0</guava.version>
-        <slf4j.version>1.7.12</slf4j.version>
         <logback.version>1.1.7</logback.version>
         <jfreechart.version>1.0.13</jfreechart.version>
         <jcommon.version>1.0.23</jcommon.version>
@@ -29,10 +29,12 @@
 
     <modules>
         <module>dl4j-examples</module>
-        <module>dl4j-cuda-specific-examples</module>
         <module>dl4j-spark-examples</module>
-        <!--<module>datavec-examples</module>
-        <module>nd4j-examples</module> -->
+        <module>datavec-examples</module>
+        <module>dl4j-cuda-specific-examples</module>
+        <module>nd4j-examples</module>
+        <module>rl4j-examples</module>
+        <module>arbiter-examples</module>
     </modules>
 
     <!-- Maven Enforcer: Ensures user has an up to date version of Maven before building -->
