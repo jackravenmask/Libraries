@@ -3,6 +3,7 @@ package org.deeplearning4j.examples.misc.lossfunctions;
 import lombok.EqualsAndHashCode;
 import org.apache.commons.math3.ode.MainStateJacobianProvider;
 import org.apache.commons.math3.util.Pair;
+import org.nd4j.linalg.activations.IActivation;
 import org.nd4j.linalg.api.iter.NdIndexIterator;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
@@ -61,7 +62,7 @@ public class CustomLossL1L2 implements ILossFunction {
     Compute Score computes the average loss function across many datapoints.
     The loss for a single datapoint is summed over all output features.
      */
-    @Override
+//    @Override
     public double computeScore(INDArray labels, INDArray preOutput, String activationFn, INDArray mask, boolean average) {
         INDArray scoreArr = scoreArray(labels, preOutput, activationFn, mask);
 
@@ -80,7 +81,7 @@ public class CustomLossL1L2 implements ILossFunction {
     The loss for a single datapoint is the loss summed over all output features.
     Returns an array that is #of samples x size of the output feature
      */
-    @Override
+//    @Override
     public INDArray computeScoreArray(INDArray labels, INDArray preOutput, String activationFn, INDArray mask) {
         INDArray scoreArr = scoreArray(labels, preOutput, activationFn, mask);
         return scoreArr.sum(1);
@@ -96,7 +97,7 @@ public class CustomLossL1L2 implements ILossFunction {
         dL/dpreout = dL/dyhat * dyhat/dpreout
         Activation function of softmax requires special handling, see below
     */
-    @Override
+//    @Override
     public INDArray computeGradient(INDArray labels, INDArray preOutput, String activationFn, INDArray mask) {
         INDArray output = Nd4j.getExecutioner().execAndReturn(Nd4j.getOpFactory().createTransform(activationFn, preOutput.dup()));
         /*
@@ -126,7 +127,7 @@ public class CustomLossL1L2 implements ILossFunction {
     }
 
     //remains the same for a custom loss function
-    @Override
+//    @Override
     public Pair<Double, INDArray> computeGradientAndScore(INDArray labels, INDArray preOutput, String activationFn, INDArray mask, boolean average) {
         return new Pair<>(
                 computeScore(labels, preOutput, activationFn, mask, average),
@@ -141,7 +142,7 @@ public class CustomLossL1L2 implements ILossFunction {
 
     //THE FOLLOWING IS TO ILLUSTRATE A SIMPLE GRADIENT CHECK.
     //It checks the implementation against the finite difference approximation
-    //You will have to write your own gradient checks. 
+    //You will have to write your own gradient checks.
     //Use the code below and the following for reference.
     //  deeplearning4j/deeplearning4j-core/src/test/java/org/deeplearning4j/gradientcheck/LossFunctionGradientCheck.java
     public static void main(String[] args) throws IOException {
@@ -245,6 +246,26 @@ public class CustomLossL1L2 implements ILossFunction {
             returnVals.add(Nd4j.create(someVals));
         }
         return returnVals;
+    }
+
+    @Override
+    public double computeScore(INDArray labels, INDArray preOutput, IActivation activationFn, INDArray mask, boolean average) {
+        return 0;
+    }
+
+    @Override
+    public INDArray computeScoreArray(INDArray labels, INDArray preOutput, IActivation activationFn, INDArray mask) {
+        return null;
+    }
+
+    @Override
+    public INDArray computeGradient(INDArray labels, INDArray preOutput, IActivation activationFn, INDArray mask) {
+        return null;
+    }
+
+    @Override
+    public Pair<Double, INDArray> computeGradientAndScore(INDArray labels, INDArray preOutput, IActivation activationFn, INDArray mask, boolean average) {
+        return null;
     }
 }
 

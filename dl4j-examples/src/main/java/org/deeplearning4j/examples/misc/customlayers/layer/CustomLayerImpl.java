@@ -52,7 +52,7 @@ public class CustomLayerImpl extends BaseLayer<CustomLayer> { //Generic paramete
         INDArray firstHalf = output.get(NDArrayIndex.all(), NDArrayIndex.interval(0, columns / 2));
         INDArray secondHalf = output.get(NDArrayIndex.all(), NDArrayIndex.interval(columns / 2, columns));
 
-        String activation1 = conf.getLayer().getActivationFunction();
+        String activation1 = conf.getLayer().getActivationFn().toString();
         String activation2 = ((CustomLayer) conf.getLayer()).getSecondActivationFunction();
 
         Nd4j.getExecutioner().exec(Nd4j.getOpFactory().createTransform(activation1, firstHalf));
@@ -97,7 +97,7 @@ public class CustomLayerImpl extends BaseLayer<CustomLayer> { //Generic paramete
         INDArray firstHalf = activationDerivative.get(NDArrayIndex.all(), NDArrayIndex.interval(0, columns / 2));
         INDArray secondHalf = activationDerivative.get(NDArrayIndex.all(), NDArrayIndex.interval(columns / 2, columns));
 
-        String activation1 = conf.getLayer().getActivationFunction();
+        String activation1 = conf.getLayer().getActivationFn().toString();
         String activation2 = ((CustomLayer) conf.getLayer()).getSecondActivationFunction();
 
         Nd4j.getExecutioner().exec(Nd4j.getOpFactory().createTransform(activation1, firstHalf).derivative());
