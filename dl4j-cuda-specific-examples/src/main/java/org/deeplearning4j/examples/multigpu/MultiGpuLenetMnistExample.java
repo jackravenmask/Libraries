@@ -22,6 +22,7 @@ import org.nd4j.linalg.api.buffer.util.DataTypeUtil;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
+import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,10 @@ public class MultiGpuLenetMnistExample {
 
     public static void main(String[] args) throws Exception {
         // PLEASE NOTE: For CUDA FP16 precision support is available
+
         DataTypeUtil.setDTypeForContext(DataBuffer.Type.HALF);
+
+        Nd4j.create(1);
 
         CudaEnvironment.getInstance().getConfiguration()
             // key option enabled
@@ -121,7 +125,7 @@ public class MultiGpuLenetMnistExample {
             .averagingFrequency(3)
 
             // if set to TRUE, on every averaging model score will be reported
-            .reportScoreAfterAveraging(true)
+            .reportScoreAfterAveraging(false)
 
             // optinal parameter, set to false ONLY if your system has support P2P memory access across PCIe (hint: AWS do not support P2P)
             .useLegacyAveraging(true)
