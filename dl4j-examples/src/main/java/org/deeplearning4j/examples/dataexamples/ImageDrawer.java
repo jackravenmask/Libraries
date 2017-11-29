@@ -138,7 +138,6 @@ public class ImageDrawer extends Application {
      */
     private static MultiLayerNetwork createNN() {
         int seed = 2345;
-        int iterations = 10;
         double learningRate = 0.05;
         int numInputs = 2;   // x and y.
         int numHiddenNodes = 100;
@@ -146,7 +145,6 @@ public class ImageDrawer extends Application {
 
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
             .seed(seed)
-            .iterations(iterations)
             .weightInit(WeightInit.XAVIER)
             .updater(new Nesterovs(learningRate, 0.9))
             .list()

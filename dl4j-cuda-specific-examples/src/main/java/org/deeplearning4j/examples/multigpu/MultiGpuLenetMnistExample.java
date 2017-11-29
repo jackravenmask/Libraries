@@ -59,7 +59,6 @@ public class MultiGpuLenetMnistExample {
         // for GPU you usually want to have higher batchSize
         int batchSize = 128;
         int nEpochs = 10;
-        int iterations = 1;
         int seed = 123;
 
         log.info("Load data....");
@@ -69,7 +68,6 @@ public class MultiGpuLenetMnistExample {
         log.info("Build model....");
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
             .seed(seed)
-            .iterations(iterations) // Training iterations as above
             .l2(0.0005)
             .weightInit(WeightInit.XAVIER)
             .updater(new Nesterovs.Builder().learningRate(.01).build())
